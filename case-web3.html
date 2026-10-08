@@ -132,6 +132,36 @@ nav {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
 }
 
+.brand-work {
+  padding: 0 48px 80px;
+}
+.brand-project + .brand-project {
+  margin-top: 72px;
+}
+.brand-project-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 15px;
+}
+.brand-project-name {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+}
+.brand-project-index {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em;
+  color: var(--dim);
+}
+.brand-project-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+}
+.brand-project figure { margin: 0; min-width: 0; }
+.brand-project img {
+  display: block; width: 100%; height: auto; border-radius: 4px;
+}
+.brand-project figcaption {
+  margin-top: 10px; font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+
 footer {
   padding: 40px 48px; display: flex; justify-content: space-between; align-items: center;
   border-top: 1px solid #1a1a1a;
@@ -155,6 +185,9 @@ footer .right a:hover { color: var(--text); }
   .case-media { padding: 16px 24px 48px; }
   .media-top-row { grid-template-columns: 1fr; }
   .media-row { grid-template-columns: 1fr; }
+  .brand-work { padding: 0 24px 48px; }
+  .brand-project + .brand-project { margin-top: 52px; }
+  .brand-project-grid { grid-template-columns: 1fr; gap: 24px; }
   footer { padding: 24px; flex-direction: column; gap: 16px; }
 }
 </style>
@@ -214,6 +247,42 @@ footer .right a:hover { color: var(--text); }
     <div class="video-wrap"><iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/MVH_HiNdZtg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
   </div>
 </div>
+
+<main class="brand-work" aria-label="Brand identity work">
+  <section class="brand-project" aria-labelledby="arch-project-title">
+    <header class="brand-project-head">
+      <h2 class="brand-project-name" id="arch-project-title">Arch Network</h2>
+      <span class="brand-project-index">01 / 02</span>
+    </header>
+    <div class="brand-project-grid">
+      <figure>
+        <img src="assets/brand-work/arch-01-brand-system.jpg" alt="Arch Network brand system" loading="lazy">
+        <figcaption>Brand system</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/brand-work/arch-02-brand-in-use.jpg" alt="Arch Network brand applications and website" loading="lazy">
+        <figcaption>Brand in use</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="brand-project" aria-labelledby="arkiv-project-title">
+    <header class="brand-project-head">
+      <h2 class="brand-project-name" id="arkiv-project-title">Arkiv</h2>
+      <span class="brand-project-index">01 / 02</span>
+    </header>
+    <div class="brand-project-grid">
+      <figure>
+        <img src="assets/brand-work/arkiv-01-brand-system.jpg" alt="Arkiv brand system" loading="lazy">
+        <figcaption>Brand system</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/brand-work/arkiv-02-brand-in-use.jpg" alt="Arkiv brand applications" loading="lazy">
+        <figcaption>Brand in use</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
 
 <footer>
   <div class="left">&copy; 2026 Jack Emery</div>
