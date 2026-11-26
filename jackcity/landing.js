@@ -8,6 +8,11 @@ if (portfolio && ['#work', '#about'].includes(location.hash)) {
 }
 let openingCue;
 const destination = new URL(play.href);
+if (location.pathname === '/jackcity-preview.html') {
+    const shareId = new URLSearchParams(location.search).get('share');
+    if (shareId) destination.searchParams.set('share', shareId);
+    play.href = destination.href;
+}
 if (destination.origin === location.origin && destination.pathname.endsWith('/player.html')) {
     const options = new URLSearchParams(location.search);
     if (options.get('touch') === '1') destination.searchParams.set('touch', '1');
