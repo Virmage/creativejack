@@ -1,4 +1,4 @@
-"""Stage JACKCITY on top of a copy of the existing static Netlify publish folder."""
+"""Add JACKCITY to the static Netlify publish directory."""
 import argparse
 import re
 from html import escape
@@ -32,14 +32,13 @@ else:
     parser.error("An Arcware share ID or external HTTPS endpoint is required.")
 
 original_home = args.publish / "index.html"
-home = args.publish / ("jackcity-preview.html" if args.arcware_preview else "index.html")
-old_home = args.publish / "portfolio.html"
+home = args.publish / ("jackcity-preview.html" if args.arcware_preview else "GTA/index.html")
 assets = args.publish / "jackcity-assets"
 files = ("landing.css", "landing.js", "title.png", "cover.webp", "opening.m4a")
 if not original_home.is_file():
     parser.error("The existing portfolio index.html is required.")
-if old_home.exists() or assets.exists():
-    parser.error("The destination already has portfolio.html or jackcity-assets. Use a clean copy.")
+if home.exists() or assets.exists():
+    parser.error("The destination already has a JACKCITY page or assets. Use a clean copy.")
 for name in files:
     if not (args.jackcity_web / name).is_file():
         parser.error(f"Prepared web asset missing: {name}")
@@ -52,16 +51,14 @@ for name in files:
     landing = landing.replace(f'"./{name}"', f'"/jackcity-assets/{name}"')
 landing = landing.replace(
     '</span></a>',
-    '</span></a>\n      <a class="portfolio-link" href="' +
-    ("/" if args.arcware_preview else "/portfolio.html") + '">View portfolio</a>',
+    '</span></a>\n      <a class="portfolio-link" href="/">View portfolio</a>',
     1,
 )
 
 assets.mkdir()
 for name in files:
     copy2(args.jackcity_web / name, assets / name)
-if not args.arcware_preview:
-    copy2(original_home, old_home)
+home.parent.mkdir(parents=True, exist_ok=True)
 new_home = assets / "index.pending"
 new_home.write_text(landing)
 new_home.replace(home)
@@ -71,8 +68,7 @@ if args.arcware_share_id or args.arcware_preview:
     for name in ("arcware-player.css", "jackcity-touch.css"):
         copy2(args.jackcity_web / name, assets / name)
     player = (args.jackcity_web / "arcware-player.html").read_text()
-    if args.arcware_preview:
-        player = player.replace('href="/portfolio.html"', 'href="/"')
+    player = player.replace('href="/portfolio.html"', 'href="/"')
     (args.publish / "play-jackcity.html").write_text(
         player.replace("__ARCWARE_SHARE_ID__", args.arcware_share_id or "")
     )
