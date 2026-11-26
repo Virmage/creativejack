@@ -1,0 +1,10 @@
+{
+  "name": "creativejack-site",
+  "private": true,
+  "dependencies": {
+    "@arcware-cloud/pixelstreaming-websdk": "1.6.10"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

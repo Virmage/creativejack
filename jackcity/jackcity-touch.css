@@ -1,0 +1,94 @@
+#jackcity-touch {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    font: 600 13px system-ui, sans-serif;
+}
+#jackcity-touch button,
+#jackcity-touch .touch-stick {
+    pointer-events: auto;
+    touch-action: none;
+    user-select: none;
+    border: 1px solid rgb(255 255 255 / 55%);
+    background: rgb(13 18 22 / 82%);
+    color: #fff;
+}
+#jackcity-touch button {
+    min-height: 44px;
+    border-radius: 22px;
+    padding: 0 13px;
+    font: inherit;
+}
+#jackcity-touch .touch-toggle,
+#jackcity-touch .touch-stick {
+    position: absolute;
+    left: max(14px, env(safe-area-inset-left));
+}
+#jackcity-touch .touch-toggle {
+    bottom: max(14px, env(safe-area-inset-bottom));
+}
+#jackcity-touch .touch-stick {
+    bottom: calc(66px + env(safe-area-inset-bottom));
+    width: clamp(78px, 24vw, 112px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+#jackcity-touch .touch-stick span {
+    width: 36%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(248 252 255 / 85%);
+    pointer-events: none;
+}
+#jackcity-touch .touch-actions {
+    position: absolute;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 8px;
+}
+#jackcity-touch .touch-help {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    translate: -50%;
+    max-width: 75%;
+    margin: 0;
+    padding: 5px 9px;
+    border-radius: 12px;
+    background: rgb(13 18 22 / 82%);
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+}
+#jackcity-touch .touch-scroll {
+    position: absolute;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: calc(110px + env(safe-area-inset-bottom));
+}
+#jackcity-touch .touch-scroll button {
+    min-width: 44px;
+}
+#jackcity-touch .touch-landscape {
+    display: none;
+}
+@media (orientation: portrait) {
+    #jackcity-touch .touch-landscape {
+        position: absolute;
+        display: block;
+        inset: 12px 12px auto;
+        margin: 0;
+        padding: 9px 12px;
+        border-radius: 12px;
+        background: rgb(13 18 22 / 82%);
+        color: #fff;
+        text-align: center;
+    }
+    #jackcity-touch .touch-help {
+        top: 49px;
+    }
+}
